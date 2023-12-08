@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://crr5prcdoqndf"]
+
+[ext_resource type="Shader" path="res://player/player.gdshader" id="1_3dp47"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_f51uc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chcnx"]
+shader = ExtResource("1_3dp47")
+shader_parameter/color = Color(0.968627, 0.831373, 0.847059, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfqwl"]
+radius = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkqn7"]
+shader = ExtResource("1_3dp47")
+shader_parameter/color = Color(0.235294, 0.65098, 0.403922, 1)
+
+[sub_resource type="Gradient" id="Gradient_sgd7i"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wswpi"]
+gradient = SubResource("Gradient_sgd7i")
+width = 32
+height = 32
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label", "sprite")]
+material = SubResource("ShaderMaterial_chcnx")
+script = ExtResource("1_f51uc")
+label = NodePath("Label")
+sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gfqwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qkqn7")
+texture = SubResource("GradientTexture2D_wswpi")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -95.0
+offset_top = -45.0
+offset_right = 95.0
+offset_bottom = -17.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3

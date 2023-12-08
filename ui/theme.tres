@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://doaqcmwx4mwxc"]
+
+[ext_resource type="FontFile" uid="uid://cyhc4ebnn7ila" path="res://ui/font.ttf" id="1_pwexu"]
+
+[resource]
+resource_local_to_scene = true
+default_font = ExtResource("1_pwexu")
+default_font_size = 24

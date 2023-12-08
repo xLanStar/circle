@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Circle"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=60
+config/icon="res://icon.svg"
+
+[audio]
+
+driver/mix_rate.web=44100
+
+[autoload]
+
+Client="*res://client.gd"
+Game="*res://game.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[filesystem]
+
+import/blender/enabled=false
+
+[gui]
+
+theme/custom="res://ui/theme.tres"
+theme/custom_font="res://ui/font.ttf"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

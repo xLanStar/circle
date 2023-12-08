@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://crr5prcdoqndf"]
+
+[ext_resource type="Shader" path="res://player/player.gdshader" id="1_2ymeb"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_f51uc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chcnx"]
+resource_local_to_scene = true
+shader = ExtResource("1_2ymeb")
+shader_parameter/color = Color(0.968627, 0.831373, 0.847059, 1)
+
+[sub_resource type="Gradient" id="Gradient_iscga"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xsk3w"]
+gradient = SubResource("Gradient_iscga")
+width = 32
+height = 32
+
+[node name="Player" type="Sprite2D" node_paths=PackedStringArray("label")]
+material = SubResource("ShaderMaterial_chcnx")
+texture = SubResource("GradientTexture2D_xsk3w")
+script = ExtResource("1_f51uc")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -95.0
+offset_top = -45.0
+offset_right = 95.0
+offset_bottom = -17.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bogkmabcxb130"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_icy31"]
+
+[node name="Main" type="CanvasLayer" node_paths=PackedStringArray("timer", "label")]
+script = ExtResource("1_icy31")
+timer = NodePath("Timer")
+label = NodePath("CenterContainer/Label")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="try_connect"]

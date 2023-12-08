@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://crr5prcdoqndf"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_f51uc"]
+
+[sub_resource type="Shader" id="Shader_d1fln"]
+code = "shader_type canvas_item;
+
+uniform vec3 color : source_color;
+
+void fragment() {
+	float d = length(UV - 0.5);
+	COLOR = vec4(mix(color, vec3(0), step(0.45, d)), 1.0 - step(0.5, d));
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chcnx"]
+shader = SubResource("Shader_d1fln")
+shader_parameter/color = Color(0.968627, 0.831373, 0.847059, 1)
+
+[sub_resource type="Gradient" id="Gradient_dy811"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_52o4t"]
+gradient = SubResource("Gradient_dy811")
+width = 32
+height = 32
+
+[node name="Player" type="Sprite2D" node_paths=PackedStringArray("label", "sprite")]
+material = SubResource("ShaderMaterial_chcnx")
+texture = SubResource("GradientTexture2D_52o4t")
+script = ExtResource("1_f51uc")
+label = NodePath("Label")
+sprite = NodePath("")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -95.0
+offset_top = -45.0
+offset_right = 95.0
+offset_bottom = -17.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3

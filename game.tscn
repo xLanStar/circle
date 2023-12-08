@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwsm5fgrhw0s8"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_k0qpy"]
+[ext_resource type="PackedScene" uid="uid://w6ddmdiy76mt" path="res://menu.tscn" id="2_iia1n"]
+[ext_resource type="Shader" path="res://circle.gdshader" id="3_okeii"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iw4ap"]
+shader = ExtResource("3_okeii")
+shader_parameter/color = Color(0.894118, 0.552941, 0.552941, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_tisp5"]
+size = Vector2(16, 16)
+
+[sub_resource type="MultiMesh" id="MultiMesh_lnld3"]
+mesh = SubResource("QuadMesh_tisp5")
+
+[sub_resource type="Gradient" id="Gradient_6euc3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t44tb"]
+gradient = SubResource("Gradient_6euc3")
+width = 16
+height = 16
+
+[node name="Game" type="Node" node_paths=PackedStringArray("background", "menu", "camera", "dot_meshes")]
+script = ExtResource("1_k0qpy")
+background = NodePath("ColorRect")
+menu = NodePath("Menu")
+camera = NodePath("Camera2D")
+dot_meshes = NodePath("DotMeshes")
+
+[node name="Menu" parent="." instance=ExtResource("2_iia1n")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(16384, 16384)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="DotMeshes" type="MultiMeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_iw4ap")
+multimesh = SubResource("MultiMesh_lnld3")
+texture = SubResource("GradientTexture2D_t44tb")
+
+[connection signal="submit" from="Menu" to="." method="_on_menu_submit"]

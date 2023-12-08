@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://w6ddmdiy76mt"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_2uolw"]
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("name_field", "color_picker")]
+script = ExtResource("1_2uolw")
+name_field = NodePath("CenterContainer/MarginContainer/VBoxContainer/LineEdit")
+color_picker = NodePath("CenterContainer/MarginContainer/VBoxContainer/ColorPickerButton")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "請輸入名字"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "請選擇顏色"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "請選擇顏色"
+color = Color(1, 1, 1, 1)
+edit_alpha = false
+
+[node name="Button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "開始"
+
+[connection signal="color_changed" from="CenterContainer/MarginContainer/VBoxContainer/ColorPickerButton" to="." method="_on_color_changed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
